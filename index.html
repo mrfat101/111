@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About me - Your name</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body class="light-mode">
+
+    <div class="fixed-controls">
+        <!-- Theme Toggle Button -->
+        <button class="toggle-btn theme-toggle" onclick="toggleTheme()">
+            <i class="fas fa-sun fa-fw"></i>
+            <i class="fas fa-moon fa-fw"></i>
+        </button>
+        <!-- Print Button -->
+        <button class="toggle-btn print-toggle" onclick="window.print()">
+            <i class="fas fa-print fa-fw"></i>
+        </button>
+    </div>
+
+    <div class="resume-container">
+
+        <header>
+            <h1>Your name</h1>
+
+            <p class="header-subtitle">
+                AAABBCC
+            </p>
+
+            <!-- Contact Information -->
+            <p class="text-subtle" style="margin-bottom: 15px;">
+                <i class="fas fa-envelope me-2 fa-fw"></i> Email: <a href="mailto:user@example.com"
+                    class="text-subtle">user@example.com</a>
+                <span style="margin-left: 20px;"></span>
+
+                <i class="fab fa-discord me-2 fa-fw"></i> Discord: <a
+                    href="https://discord.com/users/112233" target="_blank" class="text-subtle">@User112233</a>
+                <span style="margin-left: 20px;"></span>
+                
+                <i class="fab fa-github me-2 fa-fw"></i> GitHub: <a href="https://github.com/User112233" target="_blank"
+                    class="text-subtle">@User112233</a>
+            </p>
+
+            <!-- External Links -->
+            <div class="print-hidden" style="display: flex; gap: 15px;">
+                <a href="https://example.com/" target="_blank" class="btn-primary-ghost">
+                    <i class="fas fa-home fa-fw me-2"></i> 個人主頁
+                </a>
+                <a href="https://example.com/" target="_blank" class="btn-primary-ghost">
+                    <i class="fas fa-blog fa-fw me-2"></i> 部落格
+                </a>
+            </div>
+        </header>
+
+        <div class="content-grid">
+            <div class="main-content">
+                <section>
+                    <h2><i class="fas fa-user-tie fa-fw"></i>摘要 (Summary)</h2>
+                    <div class="summary-box">
+                        <p>
+                            我是 逼波。
+                            010100010100100010。
+                        </p>
+                    </div>
+                </section>
+
+                <section>
+                    <h2><i class="fas fa-history fa-fw"></i>學經歷 (Experience)</h2>
+
+                    <div id="experience-section">
+                        <div class="experience-item">
+                            <h3>國立逼波大學 (National Bi-Bo University)</h3>
+                            <span class="exp-subtitle">
+                                <span class="exp-department">人工智慧學系 (Artificial Intelligence> - <span
+                                    class="badge-status">在讀 (In Progress)</span> | 2025 年 9 月 ~ 2029 年 6 月
+                            </span>
+                            <ul>
+                                <li>主要學習：製作機油。</li>
+                            </ul>
+                        </div>
+
+                        <div class="experience-item">
+                            <h3>逼波高級中學 (Bi Bo High School)</h3>
+                            <span class="exp-subtitle">
+                                <span class="exp-department">資料處理科 (Data Processing)</span> | 2022 年 8 月 ~ 2025 年 6 月
+                            </span>
+                            <ul>
+                                <li>學會喝機油。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2><i class="fas fa-trophy fa-fw"></i>競賽與社群 (Competitions & Involvement)</h2>
+                    <ul>
+                        <li><b>全國喝機油競賽</b> - <b>第一名</b> (2025)</li>
+                    </ul>
+                    <p class="print-hidden" style="margin-top: 20px;">
+                        <i class="fas fa-link fa-fw"></i>
+                        <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" style="font-weight: 600;">更多連結</a>
+                    </p>
+                </section>
+            </div>
+
+            <div class="aside-content">
+                <section class="skill-group">
+                    <h2><i class="fas fa-cogs fa-fw"></i>核心技能 (Core Skills)</h2>
+
+                    <h4 class="skill-group h4">程式開發與網頁 (Development & Web)</h4>
+                    <ul class="skill-tags">
+                        <li><i class="fas fa-code fa-fw"></i>都不會</li>
+                    </ul>
+
+                    <h4 class="skill-group h4">作業系統與基礎架構 (OS & Infrastructure)</h4>
+                    <ul class="skill-tags">
+                        <li><i class="fas fa-terminal fa-fw"></i>還是不會</li>
+                        <li><i class="fas fa-cogs fa-fw"></i>還是不會</li>
+                        <li><i class="fas fa-desktop fa-fw"></i>還是不會</li>
+                        <li><i class="fas fa-cloud fa-fw"></i>還是不會</li>
+                    </ul>
+
+                    <h4 class="skill-group h4">其他技術與應用 (Other Tech)</h4>
+                    <ul class="skill-tags">
+                        <li><i class="fas fa-shield-alt fa-fw"></i>喝機油</li>
+                        <li><i class="fas fa-microchip fa-fw"></i>喝汽油</li>
+                        <li><i class="fas fa-robot fa-fw"></i>喝柴油</li>
+                        <li><i class="fas fa-file-word fa-fw"></i>95加滿</li>
+                    </ul>
+                </section>
+
+                <section class="cert-group">
+                    <h2><i class="fas fa-certificate fa-fw"></i>專業證照 (Certifications)</h2>
+
+                    <div class="cert-category">
+                        <h4>其他 Other</h4>
+                        <ul>
+                            <li>(證照單位) 證照名稱 - 級別</li>
+                        </ul>
+                    </div>
+
+                    <div class="cert-category">
+                        <h4>其他 Other</h4>
+                        <ul>
+                            <li>(證照單位) 證照名稱 - 級別</li>
+                        </ul>
+                    </div>
+
+                    <div class="cert-category">
+                        <h4>未來計畫考取 (Planned Certifications)</h4>
+                        <ul>
+                            <li>(證照單位) 證照名稱 <span class="badge-status">預計 2025/Q4</span></li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <footer class="text-subtle"
+            style="text-align: center; margin-top: 40px; padding-top: 15px; border-top: 1px solid var(--color-divider);">
+            <p style="margin-bottom: 5px; font-style: italic;">
+                「逼逼波波，逼波逼波。」
+            </p>
+            Your name © 2026
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="./theme.js"></script>
+
+</body>
+
+</html>

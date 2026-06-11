@@ -1,0 +1,613 @@
+/* ========================================= */
+/* ---             style.css             --- */
+/* ========================================= */
+:root {
+    /* 主題中立顏色 */
+    --card-dark: #1e1e1e;
+    --shadow-light: rgba(0, 0, 0, 0.08);
+    --shadow-dark: rgba(0, 0, 0, 0.4);
+    --color-divider: #EEEEEE;
+
+    /* 淺色模式（Light Mode）預設值 */
+    --color-primary-accent: #008080;
+    /* 藍綠色 */
+    --color-text-dark: #333333;
+    --color-text-secondary: #777777;
+    --color-bg-light: #FFFFFF;
+    --color-card-bg: #FFFFFF;
+    --color-tag-bg: #F0F0F0;
+    --color-badge-bg: #FFE0B2;
+    --color-badge-text: #664C00;
+    --color-badge-fail-bg: #E0B4B4;
+    /* 淺紅/土色底 */
+    --color-badge-fail-text: #8C4747;
+    /* 深紅棕字體 */
+    --font-main: "Noto Sans TC", "Helvetica Neue", Arial, sans-serif;
+}
+
+/* --- 深色模式覆寫 --- */
+body.dark-mode {
+    background-color: #121212;
+    color: #E4E6EB;
+
+    /* 覆寫主題顏色 */
+    --color-primary-accent: #7FFFD4;
+    /* 高亮色 */
+    --color-text-dark: #E4E6EB;
+    --color-text-secondary: #B0B3B8;
+    --color-card-bg: var(--card-dark);
+    --color-divider: #3A3A3A;
+    --color-tag-bg: #3A3A3C;
+    --color-badge-bg: #986915;
+    --color-badge-text: #FFF;
+    --color-badge-fail-bg: #842029;
+    /* 深色底 */
+    --color-badge-fail-text: #F8D7DA;
+    /* 亮色字體 */
+}
+
+/* --- 動態背景 --- */
+body:before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top left, rgba(66, 135, 245, .4), transparent 40%), radial-gradient(circle at bottom right, rgba(214, 51, 132, .4), transparent 40%);
+    z-index: -1;
+    transition: background .5s ease;
+}
+
+body.dark-mode:before {
+    background: radial-gradient(circle at top left, rgba(103, 71, 255, .3), transparent 50%), radial-gradient(circle at bottom right, rgba(173, 57, 122, .3), transparent 50%);
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: #F7F7F7;
+    color: var(--color-text-dark);
+    margin: 0;
+    padding: 40px 0;
+    transition: background-color .3s, color .3s;
+}
+
+/* 內容容器 (Card Style) */
+.resume-container,
+.sub-container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    background-color: var(--color-card-bg);
+    box-shadow: 0 4px 15px var(--shadow-light);
+    padding: 40px;
+    border-radius: 8px;
+    transition: background-color .3s, box-shadow .3s;
+}
+
+body.dark-mode .resume-container,
+body.dark-mode .sub-container {
+    box-shadow: 0 4px 15px var(--shadow-dark);
+}
+
+/* --- 通用超連結修正 (Fixes Contrast Issue) --- */
+.main-content a,
+.aside-content a,
+.sub-container a,
+.header-subtitle a {
+    color: var(--color-primary-accent);
+    /* 強制使用動態強調色 */
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.main-content a:hover,
+.aside-content a:hover,
+.sub-container a:hover,
+.header-subtitle a:hover {
+    text-decoration: underline;
+    /* 懸停時顯示底線 */
+}
+
+/* 聯絡資訊連結是例外，需要保持 text-subtle 的顏色 */
+.text-subtle a {
+    color: var(--color-primary-accent) !important;
+}
+
+
+/* --- 標題與輔助線 --- */
+h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--color-primary-accent);
+    border-bottom: 2px solid var(--color-divider);
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+    transition: color .3s;
+}
+
+h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--color-divider);
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+h2 i {
+    color: var(--color-primary-accent);
+    margin-right: 10px;
+    transition: color .3s;
+}
+
+/* --- 專業摘要 --- */
+.summary-box {
+    border-left: 4px solid var(--color-primary-accent);
+    padding-left: 15px;
+    font-style: italic;
+    transition: border-left-color .3s;
+}
+
+/* --- 學經歷項目（時間軸） --- */
+#experience-section {
+    position: relative;
+    padding-left: 20px;
+    /* 留出時間軸的空間 */
+    margin-left: 0;
+    /* 重設外部邊距 */
+}
+
+/* FIX: 調整線條長度，避免超出最後一個項目 */
+#experience-section::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    /* 定位到圓點的中心線 */
+    top: 55px;
+    /* 起始點 */
+    bottom: 20px;
+    /* 終點：線條在最後一個圓點附近結束 */
+    width: 2px;
+    background-color: var(--color-divider);
+}
+
+.experience-item {
+    position: relative;
+    margin-left: 0;
+    padding-bottom: 20px;
+    padding-left: 0;
+    /* 重設 padding */
+}
+
+/* 這是最後一項（高中學歷），我們不希望線條繼續延伸 */
+.experience-item:last-child {
+    padding-bottom: 0;
+}
+
+/* 圓點定位 */
+.experience-item::after {
+    content: '';
+    position: absolute;
+    left: -20px;
+    /* 相對於 section 邊界的位置 */
+    top: 5px;
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-primary-accent);
+    border-radius: 50%;
+    border: 3px solid var(--color-card-bg);
+    transition: background-color .3s, border-color .3s;
+}
+
+/* 內文與輔助色 */
+.experience-item h3 {
+    color: var(--color-primary-accent);
+    transition: color .3s;
+    font-size: 1.1rem;
+    margin-top: 0;
+}
+
+.exp-department {
+    font-weight: 600;
+    color: var(--color-text-dark);
+    transition: color .3s;
+}
+
+.exp-subtitle {
+    font-size: 0.95rem;
+    margin-top: 2px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.experience-item ul {
+    margin-top: 5px;
+    margin-left: 20px;
+    font-size: 0.9rem;
+}
+
+.text-subtle {
+    color: var(--color-text-secondary);
+    font-size: 0.85rem;
+    transition: color .3s;
+}
+
+/* --- 徽章樣式 --- */
+.badge-status {
+    background-color: var(--color-badge-bg);
+    color: var(--color-badge-text);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 5px;
+    white-space: nowrap;
+}
+
+.badge-fail {
+    background-color: var(--color-badge-fail-bg) !important;
+    color: var(--color-badge-fail-text) !important;
+}
+
+/* --- 技能標籤 (Fix: 圖標間距) --- */
+.skill-tags {
+    list-style: none;
+    padding-left: 0 !important;
+}
+
+.skill-tags li {
+    background-color: var(--color-tag-bg) !important;
+    color: var(--color-text-dark) !important;
+    padding: 4px 10px !important;
+    border-radius: 4px !important;
+    list-style: none !important;
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin: 4px 6px 4px 0;
+}
+
+.skill-tags li i {
+    color: var(--color-primary-accent);
+    margin-right: 6px;
+}
+
+/* 其他結構樣式保持不變 */
+.content-grid {
+    display: flex;
+    gap: 40px;
+}
+
+.main-content {
+    flex: 3;
+}
+
+.aside-content {
+    flex: 1.3;
+}
+
+.skill-group h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-dark);
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+.cert-category {
+    margin-top: 15px;
+}
+
+.cert-category h4 {
+    font-size: 0.95rem;
+    font-weight: bold;
+    color: var(--color-text-secondary);
+    margin-bottom: 5px;
+    padding-bottom: 2px;
+    border-bottom: 1px dashed var(--color-divider);
+}
+
+.cert-category ul {
+    margin-top: 5px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.cert-category ul li {
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+}
+
+
+/* ========================================= */
+/* --- 更多經歷頁面 (more_experience.html) 專用樣式 --- */
+/* ========================================= */
+.sub-container {
+    padding: 30px;
+}
+
+.sub-container h1 {
+    font-size: 2rem;
+    color: var(--color-primary-accent);
+}
+
+.sub-container .back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: var(--color-primary-accent);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* 按鈕樣式 */
+.btn-filter {
+    background-color: var(--color-tag-bg);
+    color: var(--color-text-dark);
+    border: 1px solid var(--color-divider);
+    padding: 6px 12px;
+    margin: 5px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    font-size: 0.9rem;
+}
+
+.btn-filter:hover {
+    background-color: var(--color-primary-accent);
+    color: var(--color-card-bg);
+}
+
+.btn-filter.active {
+    background-color: var(--color-primary-accent);
+    color: var(--color-card-bg);
+}
+
+/* 表格樣式 */
+.experience-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.experience-table th,
+.experience-table td {
+    padding: 10px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--color-divider);
+    font-size: 0.9rem;
+}
+
+.experience-table th:first-child {
+    width: 10%;
+    /* 縮小類別欄位寬度 */
+}
+
+.experience-table th {
+    background-color: var(--color-tag-bg);
+    font-weight: 600;
+    color: var(--color-text-dark);
+}
+
+.experience-table tr.hidden {
+    display: none;
+}
+
+.experience-table tr:hover:not(.hidden) {
+    background-color: var(--color-tag-bg);
+}
+
+
+/* --- 懸浮按鈕容器 (新增) --- */
+.fixed-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Reusable Toggle Button Base Style (新增) */
+.toggle-btn {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    color: var(--color-text-dark);
+    background-color: var(--color-card-bg);
+    /* Use card background for floating button */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background-color .3s, color .3s, box-shadow .3s;
+}
+
+.toggle-btn:hover {
+    background-color: #D0D0D0;
+}
+
+body.dark-mode .toggle-btn {
+    background-color: var(--color-divider);
+    color: var(--color-text-dark);
+    box-shadow: 0 2px 5px rgba(255, 255, 255, 0.1);
+}
+
+/* Theme Toggle Specifics */
+.theme-toggle .fa-moon {
+    display: none
+}
+
+body.dark-mode .theme-toggle .fa-moon {
+    display: inline-block
+}
+
+body.dark-mode .theme-toggle .fa-sun {
+    display: none
+}
+
+/* Print Toggle Icon Styling */
+.print-toggle i {
+    color: var(--color-primary-accent);
+}
+
+/* --- 輔助按鈕樣式 (Reusable Ghost Button) --- */
+.btn-primary-ghost {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 15px;
+    border: 2px solid var(--color-primary-accent);
+    color: var(--color-primary-accent);
+    background-color: transparent;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease-in-out;
+    margin-bottom: 20px;
+}
+
+/* FIX: 外部連結按鈕 Icon 間距 */
+.btn-primary-ghost i {
+    margin-right: 8px;
+}
+
+.btn-primary-ghost:hover {
+    background-color: var(--color-primary-accent);
+    color: var(--color-card-bg) !important;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .btn-primary-ghost:hover {
+    color: var(--color-text-dark) !important;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+}
+
+.sub-container .back-link {
+    color: var(--color-primary-accent);
+    text-decoration: none;
+    font-weight: 400;
+}
+
+/* NEW FIX: 隱藏列印內容 */
+/* 這條規則 MUST 放在 @media print 內，不應放在通用區塊 */
+
+
+/* ========================================= */
+/* --- 列印優化 (@media print) --- */
+/* ========================================= */
+@media print {
+
+    /* FIX: 隱藏固定控制項和背景 */
+    .fixed-controls {
+        display: none !important;
+    }
+
+    body:before {
+        content: none !important;
+    }
+
+    /* FIX: 隱藏所有不應列印的連結容器 (已使用 .print-hidden 類別) */
+    .print-hidden {
+        display: none !important;
+    }
+
+    body,
+    html {
+        background-color: white !important;
+        color: black !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .resume-container,
+    .sub-container {
+        box-shadow: none !important;
+        background-color: white !important;
+        padding: 20px;
+    }
+
+    /* 强制文字和線條為黑色/深灰色 */
+    h1,
+    h2,
+    h3,
+    p,
+    li,
+    a,
+    .text-subtle,
+    .badge-status,
+    .exp-department {
+        color: black !important;
+        background-color: white !important;
+        border-color: #CCC !important;
+    }
+
+    a {
+        text-decoration: none !important;
+    }
+
+    /* 修正時間軸和分隔線 */
+    #experience-section::before {
+        background-color: #999 !important;
+    }
+
+    /* 打印時，section線條變灰色 */
+    .experience-item::after {
+        background-color: #333 !important;
+        border-color: white !important;
+    }
+
+    /* 打印時，圓點變黑色 */
+
+    h1 {
+        border-bottom-color: #CCC !important;
+    }
+
+    h2 {
+        border-bottom-color: #CCC !important;
+    }
+
+    .skill-tags li {
+        background-color: #F0F0F0 !important;
+        color: black !important;
+    }
+
+    .skill-tags li i,
+    h2 i {
+        color: #333 !important;
+    }
+
+    .badge-status {
+        background-color: #E0E0E0 !important;
+        color: #333 !important;
+    }
+
+    /* 簡化佈局為單欄 */
+    .content-grid {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    /* 更多經歷頁面打印優化 */
+    .btn-filter,
+    .back-link {
+        display: none;
+    }
+
+    .experience-table th {
+        background-color: #E0E0E0 !important;
+        color: black !important;
+    }
+
+    .experience-table tr.hidden {
+        display: table-row !important;
+    }
+
+    /* 打印全部 */
+}
